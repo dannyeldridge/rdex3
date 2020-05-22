@@ -34,6 +34,8 @@ function AppUI() {
   }
 
   function PrivateRoute({ children, ...rest }) {
+    console.log('ILI?' + isLoggedIn);
+
     return (
       <Route
         {...rest}
@@ -61,7 +63,7 @@ function AppUI() {
           <Route path='/login'>
             <Login />
           </Route>
-          <PrivateRoute path='/'>
+          <PrivateRoute path='/dashboard'>
             <Dashboard />
           </PrivateRoute>
         </Switch>
