@@ -19,9 +19,9 @@ const Contact = () => {
     interactions,
   } = useContactItems(currentUser.id);
 
-  useEffect(() => {
-    getContact(id);
-  }, [id]);
+  // useEffect(() => {
+  //   getContact(id);
+  // }, [id]);
 
   return (
     <Pane>

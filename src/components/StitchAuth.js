@@ -33,6 +33,21 @@ export function StitchAuthProvider(props) {
   });
 
   useEffect(() => {
+    handleOAuthRedirects()
+      .then((user) => {
+        console.log('user', getCurrentUser());
+        setAuthState((authState) => ({
+          ...authState,
+          isLoggedIn: hasLoggedInUser(),
+          currentUser: getCurrentUser(),
+        }));
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  }, []);
+
+  useEffect(() => {
     const authListener = {
       onUserLoggedIn: (auth, loggedInUser) => {
         if (loggedInUser) {
@@ -52,8 +67,6 @@ export function StitchAuthProvider(props) {
       },
     };
     addAuthenticationListener(authListener);
-    handleOAuthRedirects();
-    setAuthState((state) => ({ ...state }));
     return () => {
       removeAuthenticationListener(authListener);
     };

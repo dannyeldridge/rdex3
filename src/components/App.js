@@ -12,6 +12,7 @@ import {
 } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
 import { AppNav } from './AppNav';
+import Contact from '../components/contact/Contact';
 
 export function App() {
   return (
@@ -55,17 +56,41 @@ function AppUI() {
     );
   }
 
+  function LoginRoute({ children, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          !isLoggedIn ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/dashboard',
+                state: { from: location },
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
+
   return (
     <Router>
       <AppNav handleClick={handleClick} isLoggedIn={isLoggedIn} />
       <section className='container'>
         <Switch>
-          <Route path='/login'>
+          <LoginRoute path='/login'>
             <Login />
-          </Route>
+          </LoginRoute>
           <PrivateRoute path='/dashboard'>
             <Dashboard />
           </PrivateRoute>
+          <PrivateRoute exact path={`/contacts/:id`}>
+            <Contact />
+          </PrivateRoute>
+          <Redirect exact from='/' to='/dashboard' />
         </Switch>
       </section>
     </Router>

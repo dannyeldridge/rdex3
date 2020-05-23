@@ -13,9 +13,6 @@ const Dashboard = () => {
           <Route exact path={`${path}`}>
             <Contacts />
           </Route>
-          <Route exact path={`/contacts/:id`}>
-            <Contact />
-          </Route>
         </Switch>
       </Fragment>
     </div>

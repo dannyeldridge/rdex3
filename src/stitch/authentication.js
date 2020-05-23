@@ -34,14 +34,14 @@ export function removeAuthenticationListener(listener) {
 }
 
 export async function loginGoogle() {
-  const redirectUrl = 'http://localhost:3000/dashboard';
+  const redirectUrl = 'http://localhost:3000/login';
   return await app.auth.loginWithRedirect(
     new GoogleRedirectCredential(redirectUrl)
   );
 }
 
-export function handleOAuthRedirects() {
+export async function handleOAuthRedirects() {
   if (app.auth.hasRedirectResult()) {
-    return app.auth.handleRedirectResult();
+    return await app.auth.handleRedirectResult();
   }
 }

@@ -158,7 +158,7 @@ export function useContactItems(userId) {
 
   React.useEffect(() => {
     loadContacts();
-  }, []);
+  }, [state.isLoading]);
 
   return {
     contacts: state.contacts,
