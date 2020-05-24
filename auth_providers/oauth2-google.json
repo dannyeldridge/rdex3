@@ -1,0 +1,16 @@
+{
+    "name": "oauth2-google",
+    "type": "oauth2-google",
+    "config": {
+        "clientId": "85888411776-us5uie6qpfujbgm76f0gf84s40d87qct.apps.googleusercontent.com"
+    },
+    "secret_config": {
+        "clientSecret": "google-secret"
+    },
+    "disabled": false,
+    "redirect_uris": [
+        "http://localhost:3000/",
+        "http://localhost:3000/login",
+        "http://localhost:3000/dashboard"
+    ]
+}
